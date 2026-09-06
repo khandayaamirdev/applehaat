@@ -61,4 +61,25 @@ abstract final class RouteNames {
 
   static const String notifications = 'notifications';
   static const String notificationsPath = '/notifications';
+
+  static const String addBuyingRequest = 'addBuyingRequest';
+  static const String addBuyingRequestPath = '/add-buying-request';
+
+  static const String findGrowers = 'findGrowers';
+  static const String findGrowersPath = '/find-growers';
+
+  static const String buyerSuppliers = 'buyerSuppliers';
+  static const String buyerSuppliersPath = '/buyer-suppliers';
+
+  static const String buyerServices = 'buyerServices';
+  static const String buyerServicesPath = '/buyer-services';
+
+  static const String editBuyingRequest = 'editBuyingRequest';
+  static const String editBuyingRequestPath = '/edit-buying-request';
+
+  static const String supplierAddListing = 'supplierAddListing';
+  static const String supplierAddListingPath = '/supplier-add-listing';
+
+  static const String serviceAddService = 'serviceAddService';
+  static const String serviceAddServicePath = '/service-add-service';
 }

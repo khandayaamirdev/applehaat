@@ -21,7 +21,12 @@ class SupplierCategoryItem {
 /// SupplierSubcategoryScreen implements Screen 6 strictly reproducing the Stitch design.
 /// Allows suppliers to select one or more categories of goods they sell.
 class SupplierSubcategoryScreen extends StatefulWidget {
-  const SupplierSubcategoryScreen({super.key});
+  final dynamic registrationData;
+
+  const SupplierSubcategoryScreen({
+    super.key,
+    this.registrationData,
+  });
 
   @override
   State<SupplierSubcategoryScreen> createState() => _SupplierSubcategoryScreenState();
@@ -76,11 +81,12 @@ class _SupplierSubcategoryScreenState extends State<SupplierSubcategoryScreen> {
   void _onContinuePressed() {
     if (_selectedCategoryIds.isEmpty) return;
 
-    // Navigate to Screen 10 (Supplier Dashboard) passing selected categories in memory
+    // Navigate to Screen 10 (Supplier Dashboard) passing selected categories and user info
     context.pushNamed(
       RouteNames.supplierDashboard,
       extra: {
         'selectedCategories': _selectedCategoryIds.toList(),
+        'registrationData': widget.registrationData,
       },
     );
   }

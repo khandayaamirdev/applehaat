@@ -21,7 +21,12 @@ class ServiceCategoryItem {
 /// ServiceProviderSubcategoryScreen implements Screen 7 strictly reproducing the Stitch design.
 /// Allows service providers to select one or more services they provide.
 class ServiceProviderSubcategoryScreen extends StatefulWidget {
-  const ServiceProviderSubcategoryScreen({super.key});
+  final Object? registrationData;
+
+  const ServiceProviderSubcategoryScreen({
+    super.key,
+    this.registrationData,
+  });
 
   @override
   State<ServiceProviderSubcategoryScreen> createState() =>
@@ -88,6 +93,7 @@ class _ServiceProviderSubcategoryScreenState
     context.pushNamed(
       RouteNames.serviceDashboard,
       extra: {
+        'registrationData': widget.registrationData,
         'selectedServices': _selectedServiceIds.toList(),
       },
     );

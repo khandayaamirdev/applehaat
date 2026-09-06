@@ -85,13 +85,22 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen> {
         );
         break;
       case UserRole.buyer:
-        context.pushNamed(RouteNames.buyerDashboard);
+        context.pushNamed(
+          RouteNames.buyerDashboard,
+          extra: widget.registrationData,
+        );
         break;
       case UserRole.supplier:
-        context.pushNamed(RouteNames.supplierSubcategory);
+        context.pushNamed(
+          RouteNames.supplierSubcategory,
+          extra: widget.registrationData,
+        );
         break;
       case UserRole.serviceProvider:
-        context.pushNamed(RouteNames.serviceSubcategory);
+        context.pushNamed(
+          RouteNames.serviceSubcategory,
+          extra: widget.registrationData,
+        );
         break;
     }
   }
