@@ -14,6 +14,7 @@ import 'package:mobile/features/dashboard/presentation/screens/feature_placehold
 import 'package:mobile/features/dashboard/presentation/screens/grower_dashboard_screen.dart';
 import 'package:mobile/features/dashboard/presentation/screens/service_provider_dashboard_screen.dart';
 import 'package:mobile/features/dashboard/presentation/screens/supplier_dashboard_screen.dart';
+import 'package:mobile/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:mobile/features/splash/presentation/screens/splash_screen.dart';
 
 void main() {
@@ -36,7 +37,12 @@ void main() {
     await tester.pump(const Duration(milliseconds: 2600));
     await tester.pumpAndSettle();
 
-    // Verify SplashScreen replaced by LoginScreen
+    // Verify arrival on OnboardingScreen and then tap Skip to reach LoginScreen
+    expect(find.byType(OnboardingScreen), findsOneWidget);
+    await tester.tap(find.text('Skip'));
+    await tester.pumpAndSettle();
+
+    // Verify OnboardingScreen replaced by LoginScreen
     expect(find.byType(SplashScreen), findsNothing);
     expect(find.byType(LoginScreen), findsOneWidget);
 
@@ -72,7 +78,7 @@ void main() {
 
     // 6. Verify arrival on Screen 4 (RegistrationScreen)
     expect(find.byType(RegistrationScreen), findsOneWidget);
-    expect(find.text('Create Your Account'), findsOneWidget);
+    expect(find.text('Fill Registration Details'), findsOneWidget);
 
     // Fill in registration form fields
     final regTextFields = find.descendant(
@@ -321,9 +327,11 @@ void main() {
       ),
     );
 
-    // Fast-forward splash
+    // Fast-forward splash and skip onboarding
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 2600));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Skip'));
     await tester.pumpAndSettle();
 
     // Login
@@ -618,9 +626,11 @@ void main() {
       ),
     );
 
-    // Fast-forward splash
+    // Fast-forward splash and skip onboarding
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 2600));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Skip'));
     await tester.pumpAndSettle();
 
     // Login
@@ -768,9 +778,11 @@ void main() {
       ),
     );
 
-    // Fast-forward splash
+    // Fast-forward splash and skip onboarding
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 2600));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Skip'));
     await tester.pumpAndSettle();
 
     // Login

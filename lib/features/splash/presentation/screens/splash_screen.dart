@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen>
     // Wait 2.5 seconds, then replace route to prevent back-navigation to splash
     _navigationTimer = Timer(const Duration(milliseconds: 2500), () {
       if (mounted) {
-        context.go(RouteNames.loginPath);
+        context.go(RouteNames.onboardingPath);
       }
     });
   }

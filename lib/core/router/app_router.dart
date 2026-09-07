@@ -12,6 +12,7 @@ import '../../features/dashboard/presentation/screens/feature_placeholder_screen
 import '../../features/dashboard/presentation/screens/grower_dashboard_screen.dart';
 import '../../features/dashboard/presentation/screens/service_provider_dashboard_screen.dart';
 import '../../features/dashboard/presentation/screens/supplier_dashboard_screen.dart';
+import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/splash/presentation/screens/splash_screen.dart';
 import 'route_names.dart';
 
@@ -28,6 +29,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: RouteNames.splashPath,
         name: RouteNames.splash,
         builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
+        path: RouteNames.onboardingPath,
+        name: RouteNames.onboarding,
+        builder: (context, state) => const OnboardingScreen(),
       ),
       GoRoute(
         path: RouteNames.loginPath,

@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/router/route_names.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/widgets/applehaat_logo.dart';
 
 /// RegistrationScreen implements Screen 4 (Create Your Account / Registration)
 /// strictly reproducing the Stitch design source of truth.
@@ -121,9 +120,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.parchment,
-      body: SafeArea(
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        backgroundColor: AppColors.parchment,
+        body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
             return SingleChildScrollView(
@@ -138,20 +139,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // Subtle top navigation row for pop navigation
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.arrow_back_ios_new_rounded,
-                            size: 20,
-                            color: AppColors.stone800,
-                          ),
-                          tooltip: 'Back',
-                          onPressed: () => Navigator.of(context).maybePop(),
-                        ),
-                      ),
-
                       // BEGIN: BrandHeader
                       _buildHeader(),
 
@@ -169,87 +156,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           },
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
-  /// Top Brand Header matching Stitch Screen 4
+  /// Screen title presentation
   Widget _buildHeader() {
-    return Column(
-      children: [
-        // Apple Logo (80x80 dp)
-        const AppleHaatLogo(
-          size: 80.0,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8.0),
+      child: Text(
+        'Fill Registration Details',
+        style: AppTextStyles.titleMedium.copyWith(
+          fontSize: 22,
+          fontWeight: FontWeight.w700,
+          color: const Color(0xFF1F2937),
+          letterSpacing: -0.3,
         ),
-        const SizedBox(height: 10),
-
-        // Brand Name Wordmark
-        Text.rich(
-          TextSpan(
-            text: 'Apple',
-            style: AppTextStyles.headlineMedium.copyWith(
-              fontSize: 24,
-              fontWeight: FontWeight.w800,
-              color: AppColors.stone900,
-              letterSpacing: -0.5,
-            ),
-            children: const [
-              TextSpan(
-                text: 'Haat',
-                style: TextStyle(color: AppColors.ruby600),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 4),
-
-        // Screen Title
-        Text(
-          'Create Your Account',
-          style: AppTextStyles.titleMedium.copyWith(
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
-            color: const Color(0xFF1F2937),
-            letterSpacing: -0.3,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 10),
-
-        // Regional Pill Badge
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
-          decoration: BoxDecoration(
-            color: const Color(0xFFEBF7EE),
-            borderRadius: BorderRadius.circular(999),
-            border: Border.all(color: const Color(0xFFD5EED8)),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 6,
-                height: 6,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF34A853),
-                  shape: BoxShape.circle,
-                ),
-              ),
-              const SizedBox(width: 6),
-              const Flexible(
-                child: Text(
-                  "Kashmir's Biggest Apple Marketplace",
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF2D7A3E),
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
+        textAlign: TextAlign.center,
+      ),
     );
   }
 
